@@ -19,7 +19,7 @@ function setup() {
   fallingObjectImg.resize(1000, 0);
   
   //Create catcher 
-   catcher = new Sprite(catcherImg, 200, 370, "k");
+   catcher = new Sprite(catcherImg, 200 , 1028, "k");
 
   //Create falling object
   fallingObject = new Sprite(fallingObjectImg, 100, 0);
