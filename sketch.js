@@ -1,4 +1,3 @@
-
 /* VARIABLES */
 let catcher, fallingObject;
 let score = 0;
@@ -15,21 +14,16 @@ function setup() {
   
   // Resize images
   backgroundImg.resize(windowWidth, windowHeight);
-  catcherImg.resize(500, 0); // Adjust the width of the catcher image
-  fallingObjectImg.resize(300, 0); // Adjust the width of the falling object image
+  catcherImg.resize(100, 0);
+  fallingObjectImg.resize(50, 0);
   
-  //Calculate initial positions
-  let catcherX = windowWidth / 2; // Center the catcher horizontally
-  let catcherY = windowHeight - catcherImg.height; // Place the catcher at the bottom of the window
-  let fallingObjectX = random(windowWidth); // Randomize the falling object's initial X position
-  let fallingObjectY = 0; // Start the falling object at the top of the window
-
   //Create catcher 
-  catcher = new Sprite(catcherImg, catcherX, catcherY, "k");
+   catcher = new Sprite(catcherImg,200 ,380 , "k");
 
   //Create falling object
-  fallingObject = new Sprite(fallingObjectImg, fallingObjectX, fallingObjectY);
+  fallingObject = new Sprite(fallingObjectImg, 100, 0);
   fallingObject.velocity.y = 2;
+  
 }
 
 function draw() {
@@ -47,28 +41,32 @@ function draw() {
   if (fallingObject.y >= height) {
     fallingObject.y = 0;
     fallingObject.x = random(width);
-    fallingObject.velocity.y = random(1, 5);
+    fallingObject.vel.y = random(1, 5);
 
     // Spicy 
     score -= 1;
   }
   // Move catcher
-  if (keyIsDown(LEFT_ARROW)) {
-    catcher.velocity.x = -3;
-  } else if (keyIsDown(RIGHT_ARROW)) {
-    catcher.velocity.x = 3;
+  if (kb.pressing("left")) {
+    catcher.vel.x = -3;
+  } else if (kb.pressing("right")) {
+    catcher.vel.x = 3;
   } else {
-    catcher.velocity.x = 0;
+    catcher.vel.x = 0;
   }
 
   // Stop catcher at edges of screen
-  catcher.position.x = constrain(catcher.position.x, 0, width - catcher.width);
+  if (catcher.x < 50) {
+    catcher.x = 50;
+  } else if (catcher.x > 350) {
+    catcher.x = 350;
+  }
 
   // If fallingObject collides with catcher, move back to random position at top
   if (fallingObject.collides(catcher)) {
     fallingObject.y = 0;
     fallingObject.x = random(width);
-    fallingObject.velocity.y = random(1, 5);
+    fallingObject.vel.y = random(1, 5);
     fallingObject.direction = "down";
     score += 1;
   }
@@ -81,22 +79,22 @@ function draw() {
 
   // Medium Losing screen
   if (score < 0){
-    background(224, 224, 224);
+    
+  background(224, 224, 224);
     // Draw sprites off of screen
-    catcher.position.x = 600;
-    catcher.position.y = -300;
-    fallingObject.position.x = -100;
-    fallingObject.position.y = 0;
+  catcher.pos = { x: 600, y: -300 };
+  fallingObject.pos = { x: -100, y: 0 };
 
-    noStroke();
-    fill(0);
-    text("You gave in", width / 2 - 50, height / 2 - 30);
-    textSize(12);
-    text("Click the mouse anywhere to play again.", width / 2 - 120, height / 2);
+  noStroke();
+  fill(0);
+  text("You gave in", width / 2 - 50, height / 2 - 30);
+  textSize(12);
+  text("Click the mouse anywhere to play again.", width / 2 - 120, height / 2);
 
     if (mouseIsPressed) {
       restart();
     }
+    
   }
 
   // Spicy - Check to see if player won
@@ -118,10 +116,8 @@ function youWin() {
   background(224, 224, 224);
 
   // Draw sprites off of screen
-  catcher.position.x = 600;
-  catcher.position.y = -300;
-  fallingObject.position.x = -100;
-  fallingObject.position.y = 0;
+  catcher.pos = { x: 600, y: -300 };
+  fallingObject.pos = { x: -100, y: 0 };
 
   // Draw end of game text
   noStroke();
@@ -138,10 +134,10 @@ function restart() {
   score = 0;
 
   // Reset sprites
-  catcher.position.x = 200;
-  catcher.position.y = 380;
+  catcher.pos = { x: 200, y: 380 };
   fallingObject.y = 0;
   fallingObject.x = random(width);
   fallingObject.velocity.y = random(1, 5);
   fallingObject.direction = "down";
 }
+
