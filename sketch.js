@@ -15,8 +15,8 @@ function setup() {
   
   // Resize images
   backgroundImg.resize(windowWidth, windowHeight);
-  catcherImg.resize(100, 0); // Adjust the width of the catcher image
-  fallingObjectImg.resize(50, 0); // Adjust the width of the falling object image
+  catcherImg.resize(500, 0); // Adjust the width of the catcher image
+  fallingObjectImg.resize(300, 0); // Adjust the width of the falling object image
   
   //Calculate initial positions
   let catcherX = windowWidth / 2; // Center the catcher horizontally
