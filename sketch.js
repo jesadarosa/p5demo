@@ -15,8 +15,8 @@ function setup() {
   
   // Resize images
   backgroundImg.resize(windowWidth, windowHeight);
-  catcherImg.resize(150, 0);
-  fallingObjectImg.resize(45, 0);
+  catcherImg.resize(500, 0);
+  fallingObjectImg.resize(400, 0);
   
   //Create catcher 
    catcher = new Sprite(catcherImg, 200, 370, "k");
