@@ -15,16 +15,14 @@ function setup() {
   
   // Resize images
   backgroundImg.resize(windowWidth, windowHeight);
-  catcherImg.resize(500, 0);
-  fallingObjectImg.resize(400, 0);
+  catcherImg.resize(1000, 0);
+  fallingObjectImg.resize(1000, 0);
   
   //Create catcher 
    catcher = new Sprite(catcherImg, 200, 370, "k");
-  //catcher.color = color(95,158,160);
-  
+
   //Create falling object
   fallingObject = new Sprite(fallingObjectImg, 100, 0);
-  //fallingObject.color = color(0,128,128);
   fallingObject.velocity.y = 2;
   
 }
