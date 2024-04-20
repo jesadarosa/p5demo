@@ -11,10 +11,10 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1180, 760);
+  createCanvas(windowWidth, windowHeight);
   
   // Resize images
-  backgroundImg.resize(1180, 760);
+  backgroundImg.resize(windowWidth, windowHeight);
   catcherImg.resize(150, 0);
   fallingObjectImg.resize(45, 0);
   
